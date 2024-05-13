@@ -12,18 +12,77 @@
 </head>
 <body>
     <script>
-        console.log("hola mundo")
-        console.log(computer_choice())
+        let humanScore=0
+        let computerScore=0
+        playRound (getHumanChoice(), getComputerChoice());
         
         
-        
-        
-        function computer_choice(){
-        switch (Math.floor(Math.random()*10/3+1)){
-            case 1: return "scissors";
-            case 2: return "paper";
-            case 3: return "rock";
+        function getComputerChoice(){
+            switch (Math.floor(Math.random()*10/3+1)){
+                case 1: return "scissors";
+                case 2: return "paper";
+                case 3: return "rock";
         }
+        }
+
+        function getHumanChoice(){
+            while(1){
+             switch(prompt("Whats your choice?").toLowerCase()){
+                 case "scissors": return "scissors";
+                 case "paper": return "paper";
+                 case "rock": return "rock";
+             }
+             alert("Invalid answer");
+            }
+        }
+
+        function playRound(humanChoice, computerChoice){
+            if(humanChoice==computerChoice){
+                console.log("its a draw!");
+                return;
+            }
+                
+            switch(humanChoice){
+                case "scissors": {
+                    if(computerChoice=="paper"){
+                        console.log("You win! scissors beats paper")
+                        humanScore++;
+                    }
+                    
+                    else{
+                        console.log("You lose! rock beats scissors")
+                        computerScore++;
+                    }
+                    break;
+                }
+                case "paper": {
+                    if(computerChoice=="scissors"){
+                        console.log("You lose! scissors beats paper")
+                        computerScore++;
+                    }
+                    
+                    else{
+                        console.log("You win! paper beats rock")
+                        humanScore++;
+                    }
+                    break;
+                }
+
+                default: {
+                    if(computerChoice=="paper"){
+                        console.log("You lose! paper beats rock")
+                        computerScore++;
+                    }
+                    
+                    else{
+                        console.log("You win! rock beats scissors")
+                        humanScore++;
+                    }
+                    break;
+
+                }
+            }
+            
         }
     </script>
     <!-- Contenido de la página -->
