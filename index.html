@@ -12,9 +12,7 @@
 </head>
 <body>
     <script>
-        let humanScore=0
-        let computerScore=0
-        playRound (getHumanChoice(), getComputerChoice());
+        
         
         
         function getComputerChoice(){
@@ -39,31 +37,31 @@
         function playRound(humanChoice, computerChoice){
             if(humanChoice==computerChoice){
                 console.log("its a draw!");
-                return;
+                return 0;
             }
                 
             switch(humanChoice){
                 case "scissors": {
                     if(computerChoice=="paper"){
                         console.log("You win! scissors beats paper")
-                        humanScore++;
+                        return 1;
                     }
                     
                     else{
                         console.log("You lose! rock beats scissors")
-                        computerScore++;
+                        return 2;
                     }
                     break;
                 }
                 case "paper": {
                     if(computerChoice=="scissors"){
                         console.log("You lose! scissors beats paper")
-                        computerScore++;
+                        return 2;
                     }
                     
                     else{
                         console.log("You win! paper beats rock")
-                        humanScore++;
+                        return 1;
                     }
                     break;
                 }
@@ -71,18 +69,43 @@
                 default: {
                     if(computerChoice=="paper"){
                         console.log("You lose! paper beats rock")
-                        computerScore++;
+                        return 2;
                     }
                     
                     else{
                         console.log("You win! rock beats scissors")
-                        humanScore++;
+                        return 1;
                     }
                     break;
 
                 }
             }
             
+        }
+
+        function playGame(){    
+            let humanScore=0;
+            let computerScore=0;
+            for(let i=0; i<5; i++){
+                switch(playRound(getHumanChoice(), getComputerChoice())){
+                    case 1:{
+                        humanScore++;
+                        break;
+                    }
+                    case 2:{
+                        computerScore++;
+                        break;
+                    }
+                }
+                
+                
+                console.log(humanScore+"-"+computerScore);
+            }
+            if (humanScore>computerScore)
+                console.log("You win the game!");
+            else if(humanScore<computerScore)
+                console.log("you lose the game");
+            else console.log("you draw");
         }
     </script>
     <!-- Contenido de la página -->
