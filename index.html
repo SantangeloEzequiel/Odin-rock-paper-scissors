@@ -11,9 +11,27 @@
     <!-- Agrega otras metaetiquetas según sea necesario -->
 </head>
 <body>
+    <button id="rock">rock</button>
+    <button id="paper">paper</button>
+    <button id="scissors">scissors</button>
+    <div></div>
+    <div class="results"></div>
+    
     <script>
+        const rock = document.getElementById("rock");
+        const paper = document.getElementById("paper");
+        const scissors = document.getElementById("scissors");
+        const div = document.querySelector(".results");
         
-        
+        rock.addEventListener("click",function(){
+            playRound("rock",getComputerChoice());
+        });
+        paper.addEventListener("click",function(){
+            playRound("paper",getComputerChoice());
+        });
+        scissors.addEventListener("click",function(){
+            playRound("scissors",getComputerChoice());
+        });
         
         function getComputerChoice(){
             switch (Math.floor(Math.random()*10/3+1)){
@@ -36,31 +54,31 @@
 
         function playRound(humanChoice, computerChoice){
             if(humanChoice==computerChoice){
-                console.log("its a draw!");
+                div.textContent="its a draw!";
                 return 0;
             }
                 
             switch(humanChoice){
                 case "scissors": {
                     if(computerChoice=="paper"){
-                        console.log("You win! scissors beats paper")
+                        div.textContent="You win! scissors beats paper";
                         return 1;
                     }
                     
                     else{
-                        console.log("You lose! rock beats scissors")
+                        div.textContent="You lose! rock beats scissors";
                         return 2;
                     }
                     break;
                 }
                 case "paper": {
                     if(computerChoice=="scissors"){
-                        console.log("You lose! scissors beats paper")
+                        div.textContent="You lose! scissors beats paper";
                         return 2;
                     }
                     
                     else{
-                        console.log("You win! paper beats rock")
+                        div.textContent="You win! paper beats rock";
                         return 1;
                     }
                     break;
@@ -68,12 +86,12 @@
 
                 default: {
                     if(computerChoice=="paper"){
-                        console.log("You lose! paper beats rock")
+                        div.textContent="You lose! paper beats rock";
                         return 2;
                     }
                     
                     else{
-                        console.log("You win! rock beats scissors")
+                        div.textContent="You win! rock beats scissors";
                         return 1;
                     }
                     break;
@@ -82,7 +100,7 @@
             }
             
         }
-
+        /*
         function playGame(){    
             let humanScore=0;
             let computerScore=0;
@@ -99,14 +117,15 @@
                 }
                 
                 
-                console.log(humanScore+"-"+computerScore);
+                div.textContent=humanScore+"-"+computerScore);
             }
             if (humanScore>computerScore)
-                console.log("You win the game!");
+                div.textContent="You win the game!");
             else if(humanScore<computerScore)
-                console.log("you lose the game");
-            else console.log("you draw");
+                div.textContent="you lose the game");
+            else div.textContent="you draw");
         }
+        */
     </script>
     <!-- Contenido de la página -->
 </body>
